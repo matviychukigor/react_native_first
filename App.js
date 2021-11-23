@@ -1,47 +1,40 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { OneImage, SecondImage, ThreeImage, FourImage, Mother } from "./img/index.js";
+import { StyleSheet, Dimensions, View, ScrollView } from 'react-native';
+
+import Header from "./src/components/heaser/header";
+import ButtonGroup from "./src/components/btn_group";
+import CardSlider from "./src/components/card_with_slider/cardSlider";
+import MapDrop from "./src/components/map_and_dropdown/map";
+import Menu from "./src/components/menu/menu";
+
+const { width } = Dimensions.get('window');
 
 export default function App() {
+  
+  
   return (
     <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={styles.text_wrapper}>
-            <Text style={styles.text}>Tropa.io</Text>
-          </View>
-          <View style={styles.img_wrapper}>
-            <Image
-              source={OneImage}
-            />
-            <Image
-              source={SecondImage}
-            />
-            <Image
-              source={ThreeImage}
-            />
-            <Image
-              source={FourImage}
-            />
-          </View>
-        </View>
+
+        <Header/>
+
         <View style={styles.pricing_wrapper}>
-          <View style={styles.text_back}><Text style={styles.text_pricin}>Free</Text></View>
-          <View style={styles.text_back}><Text style={styles.text_pricin}>$</Text></View>
-          <View style={styles.text_back}><Text style={styles.text_pricin}>$$</Text></View>
-          <View style={styles.text_back}><Text style={styles.text_pricin}>$$$</Text></View>
-          <View style={styles.text_back}>
-            <View style={styles.mother}>
-              <Image
-                source={Mother}
-                style={styles.mother_img}
-              />
-              <Text style={styles.text_pricin}>
-                Kids friendly
-              </Text>
-            </View>
-          </View>
+          <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          > 
+          <ButtonGroup buttons={[{text: "Free", img: false}, {text: "$", img: false}, {text: "$$", img: false}, {text: "$$$", img: false}, {text: "Kids friendly", img: true}, {text: "Covid free", img: false}]} />
+          </ScrollView>
         </View>
+
+        <ScrollView>
+          <MapDrop/>
+          <CardSlider/>
+          <CardSlider/>
+        </ScrollView>
+
+        <Menu/>
+
       <StatusBar style="auto" />
     </View>
   );
@@ -52,52 +45,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#062F25',
   },
-  header: {
-    flexDirection: 'row',
-    marginTop: 44,
-  },
-  img_wrapper: {
-    flexDirection: "row"
-  },  
-  text_wrapper: {
-    backgroundColor: '#2AB009',
-    width: 173,
-    height: 48,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  text: {
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: 34,
-    lineHeight: 48,
-    letterSpacing: -0.04,
-    textTransform: "uppercase",
-    color: "#FFFFFF",
-  }, 
   pricing_wrapper: {
     flexDirection: "row",
     marginTop: 16,
-    marginHorizontal: 8
+    marginLeft: 8,
+    marginBottom: 16
   },
-  text_back:{
-    backgroundColor: "#ED0B34",
-    borderRadius: 20,
-    paddingVertical: 6, 
-    paddingHorizontal: 12,
-    marginHorizontal: 1
-  },
-  text_pricin:{
-    color: "#FFFFFF",
-    letterSpacing: 0.02,
-    lineHeight: 20,
-    fontSize: 16,
-    fontWeight: "600"
-  },
-  mother: {
-    flexDirection: "row"
-  },
-  mother_img: {
-    marginRight: 8
-  }
 });
