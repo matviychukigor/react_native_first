@@ -26,10 +26,15 @@ const styles = StyleSheet.create({
         fontSize: 28,
         marginRight: 36
     },
-    menu_icons_active: {
+    menu_heart_active: {
         color: "#ED0B34", 
         fontSize: 28,
         marginRight: 36
+    },
+    menu_search_active: {
+        color: "#000000", 
+        fontSize: 28,
+        marginRight: 36   
     }
 })
 
